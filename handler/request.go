@@ -20,6 +20,10 @@ type CreateOpeningRequest struct {
 }
 
 func (r *CreateOpeningRequest) Validate() error {
+
+	if r.Role == "" && r.Company == "" && r.Location == "" && r.Remote == nil && r.Salary <= 0 {
+		return fmt.Errorf("request body is empty or malformed")
+	}
 	if r.Role == "" && r.Company == "" && r.Location == "" && r.Remote == nil && r.Salary <= 0 {
 		return fmt.Errorf("request body is empty or malformed")
 	}
